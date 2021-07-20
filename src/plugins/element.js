@@ -6,12 +6,10 @@ import {
 	FormItem,
 	Input,
 	Message,
-	MessageBox,
 } from 'element-ui'
 
 Vue.use(Button);
 Vue.use(Form);
 Vue.use(FormItem);
 Vue.use(Input);
-Vue.use(Message);
-Vue.use(MessageBox);
+Vue.prototype.$msg = Message;
