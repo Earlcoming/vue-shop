@@ -8,8 +8,7 @@
         <el-container>
             <!-- 侧边 -->
             <el-aside width="200px">
-                <el-col :span="12">
-                    <h5>自定义颜色</h5>
+                <el-col>
                     <el-menu
                         class="el-menu-vertical-demo"
                         @open="handleOpen"
@@ -18,13 +17,12 @@
                         text-color="#fff"
                         active-text-color="#409eff"
                     >
-                        <el-submenu index="1">
+                        <el-submenu v-for="item in menuList" :key="item.id" :index="item.id + ''">
                             <template slot="title">
                                 <i class="el-icon-location"></i>
-                                <span>导航一</span>
+                                <span>{{item.authName}}</span>
                             </template>
-							<el-menu-item index="1-1">选项1</el-menu-item>
-							<el-menu-item index="1-2">选项2</el-menu-item>
+							<el-menu-item index="1-1" v-for="itemChild in item.children" :key="itemChild.id">{{itemChild.authName}}</el-menu-item>
                         </el-submenu>
 						
                     </el-menu>
@@ -38,6 +36,12 @@
 
 <script>
 export default {
+	data () {
+		return {
+			// 左侧菜单数据
+			menuList: ''
+		}
+	},
     methods: {
         logout() {
             window.sessionStorage.clear("token");
@@ -49,7 +53,17 @@ export default {
         handleClose(key, keyPath) {
             console.log(key, keyPath);
         },
+		async getMenuList() {
+			const {data: res} = await this.$http.get('menus');
+			console.log(res.data)
+			if(res.meta.status !== 200) return this.$msg.error(res.meta.msg);
+			this.menuList = res.data
+		},
     },
+	created() {
+		this.getMenuList();
+	},
+
 };
 </script>
 

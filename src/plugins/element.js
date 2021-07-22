@@ -14,6 +14,7 @@ import {
 	Submenu,
 	MenuItem,
 	MenuItemGroup,
+	Col,
 } from 'element-ui'
 
 Vue.use(Button);
@@ -28,4 +29,5 @@ Vue.use(Main);
 Vue.use(Submenu);
 Vue.use(MenuItem);
 Vue.use(MenuItemGroup);
+Vue.use(Col);
 Vue.prototype.$msg = Message;
