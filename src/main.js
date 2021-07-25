@@ -16,13 +16,6 @@ axios.interceptors.request.use(config => {
 });
 Vue.prototype.$http = axios;
 
-axios.get('users', {
-	pagenum: 1,
-	pagesize: 10
-}).then(data => {
-	console.log(data);
-});
-
 new Vue({
 	router,
 	store,
