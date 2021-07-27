@@ -181,14 +181,26 @@
     <el-dialog
   title="分配角色"
   :visible.sync="fenpeiUser"
-  width="50%">
+  width="50%"
+  @close="deleteRoleInfo">
   <div class="">
-    <p>当前的用户： {{userInfo.username}}</p>
-    <p>当前的角色： {{userInfo.role_name}}</p>
+    <p>当前的用户： {{userInfos.username}}</p>
+    <p>当前的角色： {{userInfos.role_name}}</p>
+    <p>分配新角色: 
+      <el-select v-model="selectRoleId" placeholder="请选择">
+      <el-option
+        v-for="item in roleList"
+        :key="item.id"
+        :label="item.roleName"
+        :value="item.id">
+      </el-option>
+    </el-select>
+      
+    </p>
   </div>
   <span slot="footer" class="dialog-footer">
-    <el-button @click="dialogVisible = false">取 消</el-button>
-    <el-button type="primary" @click="fenpeiUser = false">确 定</el-button>
+    <el-button @click="fenpeiUser = false">取 消</el-button>
+    <el-button type="primary" @click="saveRoleInfo">确 定</el-button>
   </span>
 </el-dialog>
   </div>
@@ -250,7 +262,11 @@ export default {
       // 分配角色flag
       fenpeiUser: false,
       // 分配角色 list
-      userInfo: [],
+      userInfos: {},
+      // 选择器
+      selectRoleId: '',
+      // 所有角色数据列表
+      roleList: [],
       
       addFormRules: {
         username: [
@@ -309,6 +325,7 @@ export default {
       const { data: res } = await this.$http.get("users", {
         params: this.userInfo,
       });
+      console.log('用户信息',res, this.userInfo);
       if (res.meta.status !== 200) return this.$msg.error(res.meta.msg);
       this.userList = res.data.users;
       this.total = res.data.total;
@@ -404,11 +421,27 @@ export default {
     },
 
     // 分配角色
-    assignRoles(userInfo) {
-      console.log(userInfo);
-      this.userInfo = userInfo;
+    async assignRoles(userInfo) {
       this.fenpeiUser = true;
+      // 获取角色列表
+      const {data: res} = await this.$http.get('roles');
+      if(res.meta.status !== 200) return this.$msg.error(res.meta.mesg)
+      this.roleList = res.data;
+      console.log('获取角色列表', this.roleList);
+      this.userInfos = userInfo;
     },
+    // 确定提交角色分配
+    async saveRoleInfo() {
+        if(!this.selectRoleId) return this.$msg.error('没有分配好角色');
+        const {data: res} = await this.$http.put(`users/${this.userInfos.id}/role`, {rid: this.selectRoleId});
+        if(res.meta.status !== 200) return this.$msg.error(res.meta.msg);
+        this.$msg.success(res.meta.msg);
+        this.getUserList();
+        this.fenpeiUser = false;
+    },
+    deleteRoleInfo() {
+        this.selectRoleId = '';
+    }
   },
   created() {
     this.getUserList();
