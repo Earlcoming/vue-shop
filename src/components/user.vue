@@ -175,6 +175,22 @@
         >
       </span>
     </el-dialog>
+
+
+    <!-- 分配角色 -->
+    <el-dialog
+  title="分配角色"
+  :visible.sync="fenpeiUser"
+  width="50%">
+  <div class="">
+    <p>当前的用户： {{userInfo.username}}</p>
+    <p>当前的角色： {{userInfo.role_name}}</p>
+  </div>
+  <span slot="footer" class="dialog-footer">
+    <el-button @click="dialogVisible = false">取 消</el-button>
+    <el-button type="primary" @click="fenpeiUser = false">确 定</el-button>
+  </span>
+</el-dialog>
   </div>
 </template>
 
@@ -231,6 +247,11 @@ export default {
 
       // 删除用户
       closeDialogVisible: false,
+      // 分配角色flag
+      fenpeiUser: false,
+      // 分配角色 list
+      userInfo: [],
+      
       addFormRules: {
         username: [
           {
@@ -385,6 +406,8 @@ export default {
     // 分配角色
     assignRoles(userInfo) {
       console.log(userInfo);
+      this.userInfo = userInfo;
+      this.fenpeiUser = true;
     },
   },
   created() {
