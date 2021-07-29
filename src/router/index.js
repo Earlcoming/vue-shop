@@ -1,11 +1,12 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Login from '../views/login.vue'
+import login from '../views/login.vue'
 import Home from '../views/home.vue'
 import Welcome from '../components/welcome.vue'
-import Users from '../components/user.vue'
-import Rights from '../components/rights.vue'
-import Roles from '../components/roles.vue'
+import users from '../components/user.vue'
+import rights from '../components/rights.vue'
+import roles from '../components/roles.vue'
+import goods from '../components/goods.vue'
 Vue.use(VueRouter)
 
 const routes = [
@@ -16,15 +17,16 @@ const routes = [
     redirect: '/Welcome' ,
     children: [
       { path: '/Welcome', name: 'Welcome', component: Welcome},
-      { path: '/users', name: 'users', component: Users},
-      { path: '/rights', name: 'rights', component: Rights},
-      { path: '/roles', name: 'roles', component: Roles},
+      { path: '/users', name: 'users', component: users},
+      { path: '/rights', name: 'rights', component: rights},
+      { path: '/roles', name: 'roles', component: roles},
+      { path: '/goods', name: 'goods', component: goods},
     ]
   },
   {
     path: '/login',
     name: 'login',
-    component: Login
+    component: login
   },
   
   
