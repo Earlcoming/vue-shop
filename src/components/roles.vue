@@ -262,7 +262,7 @@ export default {
     async allotRights(){
         const keys = [
             ...this.$refs.treeRef.getCheckedKeys(),
-            ...this.$refs.treeRef.getHalfCheckedNodes()
+            ...this.$refs.treeRef.getHalfCheckedKeys()
         ];
         const rids = keys.join(',');
         const {data: res} = await this.$http.post(`roles/${this.roleId}/rights` , {rids});
