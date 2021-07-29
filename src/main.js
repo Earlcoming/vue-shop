@@ -4,8 +4,12 @@ import router from './router'
 import store from './store'
 import './plugins/element.js'
 import axios from 'axios'
+import ZkTable from 'vue-table-with-tree-grid'
 
 Vue.config.productionTip = false
+
+
+Vue.component('tree-table', ZkTable)
 
 axios.defaults.baseURL = 'http://timemeetyou.com:8889/api/private/v1/'
 axios.interceptors.request.use(config => {
