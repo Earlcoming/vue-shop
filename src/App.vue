@@ -14,4 +14,6 @@ body,html,#app
 	width: 100%
 	height: 100%
 	margin: 0
+.ql-editor
+	min-height: 400px
 </style>
