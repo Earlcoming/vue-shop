@@ -190,16 +190,16 @@ export default {
 			const {data: res} = await this.$http.get('categories/' + this.manyForm.cat_id + '/attributes',  {
 				params: { sel: this.activeName}
 			});
-			if (res.meta.status !== 200) return this.$msg.error(res.meta.msg);
+			if (res.meta.status !== 200) return this.$message.error(res.meta.msg);
             this.attributesList = res.data;
-            this.$msg.success(res.meta.msg);
+            this.$message.success(res.meta.msg);
 		},
 		// 获取商品分类
         async getCateList() {
             const { data: res } = await this.$http.get("categories");
-            if (res.meta.status !== 200) return this.$msg.error(res.meta.msg);
+            if (res.meta.status !== 200) return this.$message.error(res.meta.msg);
             this.cateList = res.data;
-            this.$msg.success(res.meta.msg);
+            this.$message.success(res.meta.msg);
         },
 		// tab点击
 		tabClick() {
@@ -208,7 +208,7 @@ export default {
 		// 显示编辑参数对话框
 		async showEditDialog(attr) {
 			const {data: res} = await this.$http.get('categories/'+attr.cat_id+'/attributes/' + attr.attr_id, { attr_sel: attr.attr_sel } );
-			if(res.meta.status !== 200) return this.$msg.error(res.meta.msg);
+			if(res.meta.status !== 200) return this.$message.error(res.meta.msg);
 			this.editManyForm = res.data;
 			this.editDialogVisible = true;
 		},
@@ -222,8 +222,8 @@ export default {
 					attr_name: this.editManyForm.attr_name,
 					attr_sel: this.editManyForm.attr_sel
 				});
-				if(res.meta.status !== 200) return this.$msg.error(res.meta.msg);
-				this.$msg.success(res.meta.msg);
+				if(res.meta.status !== 200) return this.$message.error(res.meta.msg);
+				this.$message.success(res.meta.msg);
 				this.changeCateAttribute();
 				this.editDialogVisible = false;
 			})
@@ -238,9 +238,9 @@ export default {
 					attr_name: this.manyForm.attr_name,
 					attr_sel: this.activeName
 				});
-				if(res.meta.status !== 201) return this.$msg.error(res.meta.msg);
+				if(res.meta.status !== 201) return this.$message.error(res.meta.msg);
 				console.log(res);
-				this.$msg.success(res.meta.msg);
+				this.$message.success(res.meta.msg);
 				this.changeCateAttribute();
 				this.manyForm.attr_name = '';
 				this[dia] = false;
@@ -255,9 +255,9 @@ export default {
 			}).catch(e=>e);
 			if(confirmResult === 'cancel') return this.$meg.info('取消删除了');
 			const {data: res} = await this.$http.delete('categories/'+ manyForm.cat_id +'/attributes/' + manyForm.attr_id );
-			if(res.meta.status !== 200) return this.$msg.error(res.meta.msg);
+			if(res.meta.status !== 200) return this.$message.error(res.meta.msg);
 			this.changeCateAttribute();
-			this.$msg.success(res.meta.msg);
+			this.$message.success(res.meta.msg);
 		},
 		// 添加动态参数
 		showmanyAttr() {

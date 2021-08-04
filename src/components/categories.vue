@@ -246,7 +246,7 @@ export default {
             const { data: res } = await this.$http.get("categories", {
                 params: this.cateInfo,
             });
-            if (res.meta.status !== 200) return this.$msg.error(res.meta.msg);
+            if (res.meta.status !== 200) return this.$message.error(res.meta.msg);
             this.cateList = res.data.result;
             this.cateInfo.total = res.data.total;
         },
@@ -254,9 +254,9 @@ export default {
         async editShow(cat_id) {
             console.log(cat_id);
             const { data: res } = await this.$http.get("categories/" + cat_id);
-            if (res.meta.status !== 200) return this.$msg.error(res.meta.msg);
+            if (res.meta.status !== 200) return this.$message.error(res.meta.msg);
             this.editForm = res.data;
-            this.$msg.success(res.meta.msg);
+            this.$message.success(res.meta.msg);
             this.editDialogVisible = true;
         },
         // 分类编辑 dialog
@@ -267,8 +267,8 @@ export default {
                     "categories/" + this.editForm.cat_id,
                     { params: this.editForm.cat_name }
                 );
-                if (res.meta.status) return this.$msg.error(res.meta.msg);
-                this.$msg.success(res.meta.msg);
+                if (res.meta.status) return this.$message.error(res.meta.msg);
+                this.$message.success(res.meta.msg);
             });
         },
         // 删除分类
@@ -283,11 +283,11 @@ export default {
                 }
             ).catch((e) => e);
             if (confirmResult === "cancel")
-                return this.$msg.info("取消删除该分类了");
+                return this.$message.info("取消删除该分类了");
             const { data: res } = await this.$http.delete("categories/" + id);
-            if (res.meta.status !== 200) return this.$msg.error(res.meta.msg);
+            if (res.meta.status !== 200) return this.$message.error(res.meta.msg);
             this.getCateList();
-            this.$msg.success(res.meta.msg);
+            this.$message.success(res.meta.msg);
         },
         // 分页
         handleSizeChange(pagesize) {
@@ -301,7 +301,7 @@ export default {
         // 添加分类
         async getCatePartentList() {
             const {data: res} = await this.$http.get('categories', {params: {type: 2}});
-            if(res.meta.status !== 201) return this.$msg.error(res.meta.msg);
+            if(res.meta.status !== 201) return this.$message.error(res.meta.msg);
             this.catePatentsList = res.data;
         },
         addCate() {
@@ -337,8 +337,8 @@ export default {
                 if(!valid) return;
                 const {data: res} = await this.$http.post('categories',  this.addCateForm);
                 console.log('fenlei', res);
-                if(res.meta.status !== 200) return this.$msg.error(res.meta.msg);
-                this.$msg.success(res.meta.msg);
+                if(res.meta.status !== 200) return this.$message.error(res.meta.msg);
+                this.$message.success(res.meta.msg);
                 this.addCateDialogVisible = false;
             })
 

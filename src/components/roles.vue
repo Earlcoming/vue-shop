@@ -246,7 +246,7 @@ export default {
         async getRolesList() {
             const { data: res } = await this.$http.get("roles");
             //   console.log(res);
-            if (res.meta.status !== 200) return this.$msg.error(res.meta.msg);
+            if (res.meta.status !== 200) return this.$message.error(res.meta.msg);
             this.rolesList = res.data;
         },
         // 添加角色
@@ -261,17 +261,17 @@ export default {
                     this.addFrom
                 );
                 if (res.meta.status !== 201)
-                    return this.$msg.error(res.meta.msg);
+                    return this.$message.error(res.meta.msg);
                 this.addRightsDialogUserVisible = false;
                 this.getRolesList();
-                this.$msg.success(res.meta.msg);
+                this.$message.success(res.meta.msg);
             });
         },
         // 编辑角色
         async editUser(id) {
             const { data: res } = await this.$http.get("roles/" + id);
-            if (res.meta.status !== 200) return this.$msg.error(res.meta.msg);
-            this.$msg.success(res.meta.msg);
+            if (res.meta.status !== 200) return this.$message.error(res.meta.msg);
+            this.$message.success(res.meta.msg);
             this.editFrom = res.data;
             console.log(this.editFrom);
             this.editRightsDialogUserVisible = true;
@@ -285,10 +285,10 @@ export default {
                     this.editFrom
                 );
                 if (res.meta.status !== 200)
-                    return this.$msg.error(res.meta.msg);
+                    return this.$message.error(res.meta.msg);
                 this.editRightsDialogUserVisible = false;
                 this.getRolesList();
-                this.$msg.success(res.meta.msg);
+                this.$message.success(res.meta.msg);
             });
         },
         // 删除角色
@@ -303,11 +303,11 @@ export default {
                 }
             ).catch((err) => err);
             if (confirmResult !== "confirm")
-                return this.$msg.info("用户取消了删除");
+                return this.$message.info("用户取消了删除");
             const { data: res } = await this.$http.delete("roles/" + id);
-            if (res.meta.status !== 200) return this.$msg.error(res.meta.msg);
+            if (res.meta.status !== 200) return this.$message.error(res.meta.msg);
             this.getRolesList();
-            this.$msg.success(res.meta.msg);
+            this.$message.success(res.meta.msg);
         },
 
         // 根据ID删除对应的权限
@@ -321,19 +321,19 @@ export default {
                     type: "warning",
                 }
             ).catch((err) => err);
-            if (conResult !== "confirm") return this.$msg.info("取消删除权限");
+            if (conResult !== "confirm") return this.$message.info("取消删除权限");
             // 删除角色对应的权限
             const { data: res } = await this.$http.delete(
                 `roles/${role.id}/rights/${rightId}`
             );
-            if (res.meta.status !== 200) return this.$msg.error(res.meta.msg);
+            if (res.meta.status !== 200) return this.$message.error(res.meta.msg);
             role.children = res.data;
         },
         // 展示分配权限对话框
         async showRightsDialog(role) {
             this.roleId = role.id;
             const { data: res } = await this.$http.get("rights/tree");
-            if (res.meta.status !== 200) return this.$msg.error(res.meta.msg);
+            if (res.meta.status !== 200) return this.$message.error(res.meta.msg);
             this.showRightDialogList = res.data;
             console.log(res);
             this.getLeafKeys(role, this.checkTree);
@@ -364,8 +364,8 @@ export default {
                 `roles/${this.roleId}/rights`,
                 { rids }
             );
-            if (res.meta.status !== 200) return this.$msg.error(res.meta.msg);
-            this.$msg.success(res.meta.msg);
+            if (res.meta.status !== 200) return this.$message.error(res.meta.msg);
+            this.$message.success(res.meta.msg);
             this.showRightdialogTableVisible = false;
             this.getRolesList();
         },

@@ -73,11 +73,11 @@ export default {
 		// 获取商品列表
 		async getGoodsList() {
 			const {data: res} = await this.$http.get('goods', {params: this.goodsParams});
-			if(res.meta.status !== 200) return this.$msg.error(res.meta.msg);
+			if(res.meta.status !== 200) return this.$message.error(res.meta.msg);
 			console.log(res);
 			this.total = res.data.total;
 			this.goodsList = res.data.goods;
-			this.$msg.success(res.meta.msg);
+			this.$message.success(res.meta.msg);
 		},
 		goodsCurrentChange(page) {
 			this.goodsParams.pagenum = page;
@@ -91,9 +91,9 @@ export default {
 		async deleteGoods(id) {
 			const {data: res} = await this.$http.delete('goods/' + id);
 			console.log(res);
-			if(res.meta.status !== 200) return this.$msg.error(res.meta.msg);
+			if(res.meta.status !== 200) return this.$message.error(res.meta.msg);
 			this.goodsList();
-			this.$msg.success(res.meta.msg);
+			this.$message.success(res.meta.msg);
 		},
 		addGoods() {
 			this.$router.push({name: 'add'})

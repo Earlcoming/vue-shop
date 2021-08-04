@@ -7,7 +7,7 @@ module.exports = {
 
 			// 设置过滤包的名,不打包这些包,在public/index.html中加入cdn
 			config.set('externals', {
-				vue: 'vue',
+				vue: 'Vue',
 				axios: 'axios',
 				'vue-quill-editor': 'VueQuillEditor',
 				nprogress: 'NProgress',

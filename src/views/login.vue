@@ -68,8 +68,12 @@ export default {
             console.log(flag);
             if(!flag) return;
             const {data: res} = await this.$http.post('login', this.loginForm);
-            if(res.meta.status !== 200) return this.$msg.error(res.meta.msg);
-            this.$msg.success(res.meta.msg);
+            if(res.meta.status !== 200) return this.$message.error(res.meta.msg);
+
+            this.$message({
+				message: res.meta.msg,
+				type: 'success'
+			});
             // console.log(res);
             window.sessionStorage.setItem('token', res.data.token);
             this.$router.push({name: 'Home'});

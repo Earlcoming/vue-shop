@@ -326,10 +326,10 @@ export default {
         params: this.userInfo,
       });
       console.log('用户信息',res, this.userInfo);
-      if (res.meta.status !== 200) return this.$msg.error(res.meta.msg);
+      if (res.meta.status !== 200) return this.$message.error(res.meta.msg);
       this.userList = res.data.users;
       this.total = res.data.total;
-      this.$msg.success(res.meta.msg);
+      this.$message.success(res.meta.msg);
       console.log(res.data);
     },
     changeSizeChange(newSize) {
@@ -350,8 +350,8 @@ export default {
       const { data: res } = await this.$http.put(
         `users/${userinfo.id}/state/${userinfo.mg_state}`
       );
-      if (res.meta.status !== 200) return this.$msg.error(res.meta.msg);
-      this.$msg.success(res.meta.msg);
+      if (res.meta.status !== 200) return this.$message.error(res.meta.msg);
+      this.$message.success(res.meta.msg);
     },
     searchHandle() {
       this.getUserList();
@@ -370,8 +370,8 @@ export default {
         if (!flag) return;
         const { data: res } = await this.$http.post("users", this.addForm);
         // console.log(res);
-        if (res.meta.status !== 201) return this.$msg.error(res.meta.msg);
-        this.$msg.success(res.meta.msg);
+        if (res.meta.status !== 201) return this.$message.error(res.meta.msg);
+        this.$message.success(res.meta.msg);
         this.dialogVisible = false;
         // 添加完成重新刷新用户列表
         this.getUserList();
@@ -391,8 +391,8 @@ export default {
           email,
           mobile,
         });
-        if (res.meta.status !== 200) return this.$msg.error(res.meta.msg);
-        this.$msg.success(res.meta.msg);
+        if (res.meta.status !== 200) return this.$message.error(res.meta.msg);
+        this.$message.success(res.meta.msg);
         this.editedDialogVisible = false;
       });
     },
@@ -413,10 +413,10 @@ export default {
           type: "warning",
         }
       ).catch((err) => err);
-      if (comfirmResult !== "confirm") return this.$msg.info("用户取消删除");
+      if (comfirmResult !== "confirm") return this.$message.info("用户取消删除");
 	  const {data:res} = await this.$http.delete(`users/${id}`);
-	  if(res.meta.status !== 200) return this.$msg.error(res.meta.msg);
-		this.$msg.success(res.meta.msg);
+	  if(res.meta.status !== 200) return this.$message.error(res.meta.msg);
+		this.$message.success(res.meta.msg);
 		this.getUserList();
     },
 
@@ -425,17 +425,17 @@ export default {
       this.fenpeiUser = true;
       // 获取角色列表
       const {data: res} = await this.$http.get('roles');
-      if(res.meta.status !== 200) return this.$msg.error(res.meta.mesg)
+      if(res.meta.status !== 200) return this.$message.error(res.meta.mesg)
       this.roleList = res.data;
       console.log('获取角色列表', this.roleList);
       this.userInfos = userInfo;
     },
     // 确定提交角色分配
     async saveRoleInfo() {
-        if(!this.selectRoleId) return this.$msg.error('没有分配好角色');
+        if(!this.selectRoleId) return this.$message.error('没有分配好角色');
         const {data: res} = await this.$http.put(`users/${this.userInfos.id}/role`, {rid: this.selectRoleId});
-        if(res.meta.status !== 200) return this.$msg.error(res.meta.msg);
-        this.$msg.success(res.meta.msg);
+        if(res.meta.status !== 200) return this.$message.error(res.meta.msg);
+        this.$message.success(res.meta.msg);
         this.getUserList();
         this.fenpeiUser = false;
     },

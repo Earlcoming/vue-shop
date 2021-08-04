@@ -133,15 +133,15 @@ export default {
         // 获取商品分类
          async getCateList() {
             const { data: res } = await this.$http.get("categories");
-            if (res.meta.status !== 200) return this.$msg.error(res.meta.msg);
+            if (res.meta.status !== 200) return this.$message.error(res.meta.msg);
             this.cateList = res.data;
-            this.$msg.success(res.meta.msg);
+            this.$message.success(res.meta.msg);
         },
        
         // 页签切换之前
         tabBeforeLeave(activeName, oldName) {
             if(oldName === '0' && this.goodsForm.goods_cat.length !== 3) {
-                this.$msg.error('请选择商品分类');
+                this.$message.error('请选择商品分类');
                 return false
                 };
         },
@@ -155,25 +155,25 @@ export default {
                         sel: 'many'
                     }
                 });
-                if(res.meta.status !== 200) return this.$msg.error(res.meta.msg);
+                if(res.meta.status !== 200) return this.$message.error(res.meta.msg);
                 this.manyTableData = res.data;
-                this.$msg.success(res.meta.msg);
+                this.$message.success(res.meta.msg);
             }else if(this.tabIndex === '2'){
                 const {data: res} = await this.$http.get('categories/' + this.catId +'/attributes', {
                     params: {
                         sel: 'only'
                     }
                 });
-                if(res.meta.status !== 200) return this.$msg.error(res.meta.msg);
+                if(res.meta.status !== 200) return this.$message.error(res.meta.msg);
                 this.tabSxattr = res.data;
-                this.$msg.success(res.meta.msg);
+                this.$message.success(res.meta.msg);
             }else if(this.tabIndex === '3') {
                 
             }
         },
         onSuccess(res) {
             const picInfo = {pic: res.data.tmp_path};
-            if(res.meta.status !== 200) return this.$msg.error(res.meta.msg);
+            if(res.meta.status !== 200) return this.$message.error(res.meta.msg);
             this.goodsForm.pics.push(picInfo);
             console.log('上传图片',res, this.goodsForm.pics);
         }, 
@@ -205,8 +205,8 @@ export default {
                 })
                 
                 const {data: res} = await this.$http.post('goods', this.goodsForm);
-                if(res.meta.status !== 201) return this.$msg.error(res.meta.msg);
-                this.$msg.success(res.meta.msg);
+                if(res.meta.status !== 201) return this.$message.error(res.meta.msg);
+                this.$message.success(res.meta.msg);
             })
         }
     },
