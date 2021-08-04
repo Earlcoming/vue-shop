@@ -76,5 +76,5 @@ Vue.use(Step);
 Vue.use(Checkbox);
 Vue.use(Upload);
 
-Vue.prototype.$msg = Message;
+Vue.prototype.$message = Message;
 Vue.prototype.$confirm = MessageBox.confirm;

@@ -1,5 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import '../plugins/element'
+
 const login = () => import (/* webpackChunkName: 'login_welcome' */ '../views/login.vue')
 const Home = () => import (/* webpackChunkName: 'login_welcome' */ '../views/home.vue')
 const Welcome = () => import (/* webpackChunkName: 'login_welcome' */ '../components/welcome.vue')
@@ -8,11 +10,12 @@ const users = () => import (/* webpackChunkName: 'users_rights_roles' */ '../com
 const rights = () => import (/* webpackChunkName: 'users_rights_roles' */ '../components/rights.vue')
 const roles = () => import (/* webpackChunkName: 'users_rights_roles' */ '../components/roles.vue')
 
-
 const goods = () => import (/* webpackChunkName: 'goods' */ '../components/goods.vue')
 const categories = () => import (/* webpackChunkName: 'goods' */ '../components/categories.vue')
 const params = () => import (/* webpackChunkName: 'goods' */ '../components/params.vue')
 const add = () => import (/* webpackChunkName: 'goods' */ '../components/add.vue')
+
+const orders = () => import (/* webpackChunkName: 'orders' */ '../components/orders.vue')
 
 Vue.use(VueRouter)
 
@@ -31,6 +34,7 @@ const routes = [
       { path: '/goods/add', name: 'add', component: add},
       { path: '/categories', name: 'categories', component: categories},
       { path: '/params', name: 'params', component: params},
+      { path: '/orders', name: 'params', component: orders},
     ]
   },
   {
