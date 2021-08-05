@@ -4,6 +4,7 @@
 ### 后端API  [下载](https://gitee.com/wBekvam/vueShop-api-server.git).  [接口API](./api接口文档.md)
 
 ### 功能
+
 > 用于电商项目后台用户账户，商品分类、参数、商品添加、订单信息、数据统计等
 
 ### 技术栈
