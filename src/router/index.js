@@ -16,6 +16,7 @@ const params = () => import (/* webpackChunkName: 'goods' */ '../components/para
 const add = () => import (/* webpackChunkName: 'goods' */ '../components/add.vue')
 
 const orders = () => import (/* webpackChunkName: 'orders' */ '../components/orders.vue')
+const reports = () => import (/* webpackChunkName: 'reports' */ '../components/reports.vue')
 
 Vue.use(VueRouter)
 
@@ -35,6 +36,7 @@ const routes = [
       { path: '/categories', name: 'categories', component: categories},
       { path: '/params', name: 'params', component: params},
       { path: '/orders', name: 'params', component: orders},
+      { path: '/reports', name: 'params', component: reports},
     ]
   },
   {
