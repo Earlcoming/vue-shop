@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import '../plugins/element'
 
 const login = () => import (/* webpackChunkName: 'login_welcome' */ '../views/login.vue')
 const Home = () => import (/* webpackChunkName: 'login_welcome' */ '../views/home.vue')
@@ -16,7 +15,7 @@ const params = () => import (/* webpackChunkName: 'goods' */ '../components/para
 const add = () => import (/* webpackChunkName: 'goods' */ '../components/add.vue')
 
 const orders = () => import (/* webpackChunkName: 'orders' */ '../components/orders.vue')
-const reports = () => import (/* webpackChunkName: 'reports' */ '../components/reports.vue')
+const reports = () => import (/* webpackChunkName: 'orders' */ '../components/reports.vue')
 
 Vue.use(VueRouter)
 
@@ -35,8 +34,8 @@ const routes = [
       { path: '/goods/add', name: 'add', component: add},
       { path: '/categories', name: 'categories', component: categories},
       { path: '/params', name: 'params', component: params},
-      { path: '/orders', name: 'params', component: orders},
-      { path: '/reports', name: 'params', component: reports},
+      { path: '/orders', name: 'orders', component: orders},
+      { path: '/reports', name: 'reports', component: reports},
     ]
   },
   {

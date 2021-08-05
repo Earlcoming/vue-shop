@@ -25,9 +25,7 @@ export default {
     },
     components: {},
     methods: {},
-
     created() {},
-
     // 实例化完成 可以获取dom
     async mounted() {
         var myChart = echarts.init(document.getElementById("main"));

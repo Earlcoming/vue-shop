@@ -1,11 +1,12 @@
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
-import store from './store'
 import './plugins/element.js'
 import axios from 'axios'
 // tree- gird
 import ZkTable from 'vue-table-with-tree-grid'
+import _ from 'lodash'
+
 
 // 富文本编辑器
 import VueQuillEditor from 'vue-quill-editor'
@@ -16,7 +17,6 @@ import 'quill/dist/quill.bubble.css' // for bubble theme
 Vue.use(VueQuillEditor, /* { default global options } */)
 
 Vue.config.productionTip = false
-
 
 Vue.component('tree-table', ZkTable)
 
@@ -43,6 +43,5 @@ Vue.filter('dataFormat', originVal => {
 
 new Vue({
 	router,
-	store,
 	render: h => h(App)
 }).$mount('#app');

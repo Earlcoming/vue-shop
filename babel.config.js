@@ -1,11 +1,14 @@
-const plugins = [];
-if(process.env.NODE_ENV === 'production' ){
-	plugins.push('transform-remove-console');
+// 生产环境去除console.log 
+const prodPlugins = [];
+if (process.env.NODE_ENV === 'production') {
+	prodPlugins.push('transform-remove-console');
 }
 
 module.exports = {
-  presets: [
-    '@vue/app'
-  ],
-  plugins
+	presets: [
+		'@vue/cli-plugin-babel/preset'
+	],
+	plugins: [
+		...prodPlugins
+	]
 }

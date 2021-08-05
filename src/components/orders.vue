@@ -81,6 +81,7 @@
 
 <script>
 import { regionData, CodeToText } from 'element-china-area-data'
+
 export default {
 	name: '',
 	data() {
