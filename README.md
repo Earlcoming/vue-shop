@@ -1,4 +1,4 @@
-# vue-shop
+# 电商后台管理
 
 ## 项目预览 [预览](http://211.149.185.82:805/)
 ### 后端API  [下载](https://gitee.com/wBekvam/vueShop-api-server.git).  [接口API](./api接口文档.md)
