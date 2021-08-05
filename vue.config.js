@@ -19,7 +19,6 @@ module.exports = {
 				echarts: 'echarts',
 				lodash: '_',
 				'vue-router': 'VueRouter',
-				'element-china-area-data' : 'element-china-area-data'
 			})
 
 			// 给html属性添加isProd属性为true;
