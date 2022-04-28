@@ -429,6 +429,7 @@ export default {
       this.roleList = res.data;
       console.log('获取角色列表', this.roleList);
       this.userInfos = userInfo;
+      console.log('uersinfos', this.userInfos)
     },
     // 确定提交角色分配
     async saveRoleInfo() {
